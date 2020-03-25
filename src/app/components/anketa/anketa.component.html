@@ -1,0 +1,82 @@
+<div class="components_anketa" [formGroup]="form">
+	<div class="form_row">
+		<div class="components_anketa_block-with-avatar">
+			<div>
+				<input type="hidden" formControlName="avatar"/>
+				<input #file
+					   type="file"
+					   accept="image/*"
+					   formControlName="file"
+					   appInputFile
+					   class="hidden components_anketa_block-with-avatar_file"/>
+				<a class="components_anketa_ava"
+				   (click)="file.click()"
+				   [style.background-image]=" authService.user.avatar ? 'url(' + apiUrl + '/images/avatars/' + authService.user.avatar + ')' : 'none' "
+				   href="javascript:void(0);"></a>
+			</div>
+			<div>
+				<app-input-high
+					formControlName="name"
+					placeholder="имя"></app-input-high>
+			</div>
+		</div>
+	</div>
+	<div class="form_row">
+		<h3>Пол</h3>
+		<div class="components_anketa_flex">
+			<div>
+				<app-radiocheckbox labelName="Мужчина"
+								   [isAsBlock]="true"
+								   *ngIf="{ id: 'uk6gygexpn1' }; let myVar"
+								   [for]="myVar.id">
+					<input [id]="myVar.id"
+						   type="radio"
+						   formControlName="sex"
+						   [value]="1"/>
+				</app-radiocheckbox>
+			</div>
+			<div>
+				<app-radiocheckbox labelName="Женщина"
+								   [isAsBlock]="true"
+								   *ngIf="{ id: 'uk6gygexpn2' }; let myVar"
+								   [for]="myVar.id">
+					<input [id]="myVar.id"
+						   type="radio"
+						   formControlName="sex"
+						   [value]="0"/>
+				</app-radiocheckbox>
+			</div>
+		</div>
+	</div>
+	<div class="form_row">
+		<div class="components_anketa_flex">
+			<div>
+				<app-input-high
+					type="number"
+					formControlName="height"
+					title="Рост (см)"
+					placeholder="000см"
+				></app-input-high>
+			</div>
+			<div>
+				<app-input-high
+					type="date"
+					formControlName="dateAge"
+					title="Дата рождения"
+					placeholder="00.00.0000"
+				></app-input-high>
+			</div>
+		</div>
+		<br/>
+		<p class="text-mute align-center">Используется для персональных рекомендаций</p>
+	</div>
+	<div class="form_row sx-region">
+		<input type="hidden" formControlName="cityId"/>
+		<input type="hidden" formControlName="cityName"/>
+		<app-searcher classes="sx-primary sx-map-marker"
+					  [value]="authService.user.cityName"
+					  (outputData)="listenCity($event)"></app-searcher>
+		<br/>
+		<p class="text-mute align-center">Для подбора подходящих рационов питания<br/>из вашего региона</p>
+	</div>
+</div>

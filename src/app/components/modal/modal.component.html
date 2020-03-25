@@ -1,0 +1,44 @@
+<div *ngIf="settings && settings.isShowModal"
+	 class="components_modal{{ ['top', 'bottom'].indexOf(settings.modalPosition) !== -1 ? ' sx-' + settings.modalPosition : '' }}">
+
+	<div class="components_modal_fix" (click)="onClickFix($event)">
+		<div class="components_modal_box">
+			<button *ngIf="settings.isShowClose"
+					class="btn sx-cross-black components_modal_close"
+					(click)="hide()"></button>
+
+			<div *ngIf="settings.isShowHeader" class="components_modal_header">
+				<h2 *ngIf="settings.headerTitle"
+					class="components_modal_title">{{ settings.headerTitle }}</h2>
+				<div *ngIf="settings.headerComment"
+					 class="components_modal_comment text-mute text-sm">{{ settings.headerComment }}</div>
+			</div>
+
+			<div class="components_modal_body">
+				<template #ngTemplateOutletContainer [ngTemplateOutlet]="settings.body"></template>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--<ng-template #cloudNotes>-->
+<!--	<app-cloud-note></app-cloud-note>-->
+<!--</ng-template>-->
+<!--<ng-template #amountGramForModal>-->
+<!--	<app-amount-gram-for-modal></app-amount-gram-for-modal>-->
+<!--</ng-template>-->
+<!--<ng-template #topForModal>-->
+<!--	<app-top-for-modal></app-top-for-modal>-->
+<!--</ng-template>-->
+<!--<ng-template #firstWeighing>-->
+<!--	<app-first-weighing></app-first-weighing>-->
+<!--</ng-template>-->
+<!--<ng-template #twoBtnsForNote>-->
+<!--	<div class="align-center">-->
+<!--		<button class="btn sx-white sx-shadow">Да, без заметок</button>-->
+<!--		<button class="btn sx-white sx-shadow">Добавить заметку</button>-->
+<!--	</div>-->
+<!--</ng-template>-->
+<!--<ng-template #defaultTemplate>-->
+<!--	<strong>empty</strong>-->
+<!--</ng-template>-->

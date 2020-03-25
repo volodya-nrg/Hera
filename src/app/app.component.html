@@ -1,0 +1,8 @@
+<div class="app-root"
+	 [style.padding-bottom]="paddingBottom"
+	 [style.min-height]=" 'calc(100vh - ' + paddingBottom + 'px)' ">
+	<router-outlet></router-outlet>
+	<app-modal-info></app-modal-info>
+	<app-modal-block></app-modal-block>
+</div>
+<app-modal></app-modal>
